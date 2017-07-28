@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class Calls {
 
 
-    public void stringRequest(
+    public static void stringRequest(
             final Context context,
             int method,
             String url,
