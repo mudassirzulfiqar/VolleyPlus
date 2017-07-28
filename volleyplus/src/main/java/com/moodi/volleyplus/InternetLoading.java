@@ -13,7 +13,7 @@ import com.github.ybq.android.spinkit.style.RotatingPlane;
 
 public class InternetLoading extends ProgressBar {
 
-    int color = R.color.colorPrimaryDark;
+    int color = R.color.default_loader;
 
     public InternetLoading(Context context) {
         super(context);
