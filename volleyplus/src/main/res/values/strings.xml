@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">VolleyPlus</string>
+    <string name="fetching_data">Fetching Data ...</string>
+</resources>
