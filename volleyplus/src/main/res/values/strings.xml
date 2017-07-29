@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">VolleyPlus</string>
     <string name="fetching_data">Fetching Data ...</string>
+    <string name="retryMessage">No internet connection !</string>
 </resources>
