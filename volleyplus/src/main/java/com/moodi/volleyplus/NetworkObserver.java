@@ -29,7 +29,7 @@ public class NetworkObserver {
 
     public interface INetworkObserver {
 
-        void isAvalibale(boolean status);
+        void isAvailable(boolean status);
 
     }
 
