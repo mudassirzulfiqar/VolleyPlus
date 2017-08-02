@@ -2,6 +2,7 @@ package com.moodi.volleyplus;
 
 import android.content.Context;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
@@ -22,7 +23,8 @@ public class CallsManager {
             final Context context,
             int method,
             String url,
-            final VolleyPlusResponseString reference) {
+            final VolleyPlusResponseString reference,
+            boolean retryPolicy) {
 
 
         if (NetworkUtils.isConnected(context)) {
@@ -46,6 +48,13 @@ public class CallsManager {
                         }
                     });
 
+            if (retryPolicy) {
+                mStringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            }
+
             AppController.getInstance(context).addToRequestQueue(mStringRequest);
         } else {
 
@@ -60,7 +69,8 @@ public class CallsManager {
             , int method
             , String url
             , JSONObject jsonObject
-            , final VolleyPlusResponseJSON reference) {
+            , final VolleyPlusResponseJSON reference
+            , boolean retryPolicy) {
 
 
         if (NetworkUtils.isConnected(context)) {
@@ -85,6 +95,14 @@ public class CallsManager {
 
                         }
                     });
+
+            if (retryPolicy) {
+                mJsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            }
+
             AppController.getInstance(context).addToRequestQueue(mJsonObjectRequest);
         } else {
             reference.onConnectionError();
