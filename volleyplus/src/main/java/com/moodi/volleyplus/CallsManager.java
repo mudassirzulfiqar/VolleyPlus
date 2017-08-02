@@ -56,7 +56,7 @@ public class CallsManager {
 
     }
 
-    public void jsonObjectRequest(Context context
+    public static void jsonObjectRequest(Context context
             , int method
             , String url
             , JSONObject jsonObject
