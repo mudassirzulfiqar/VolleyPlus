@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * Created by moodi on 28/07/2017.
  */
 
-public class Calls {
+public class CallsManager {
 
 
     public static void stringRequest(

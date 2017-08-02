@@ -2,9 +2,13 @@ package com.moodi.volleyplus;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by moodi on 28/07/2017.
@@ -13,21 +17,46 @@ import android.view.Window;
 public class RetryDialog extends Dialog {
 
     OnDialogCallback onDialogCallback;
-    int retryMessage = R.string.retryMessage;
+    String retryMessage = "No internet connection !";
+    String buttonText = "Retry";
+    Context context;
+    int buttonColor = R.color.default_loader;
+    Button retryButton;
+    TextView bodyMessageTextview;
 
-
-    public RetryDialog(@NonNull Context context) {
+    public RetryDialog(@NonNull Context context, String retryMessage, String retryButtonMessage, int retryButtonColor, OnDialogCallback retryButtonListener) {
         super(context);
-        build(context);
+        this.context = context;
+        initialize();
+        this.retryMessage = retryMessage;
+        this.buttonColor = retryButtonColor;
+        this.buttonText = (retryButtonMessage);
+        this.onDialogCallback = retryButtonListener;
+        buildDesign();
+    }
+
+    public void setButtonColor(int color) {
+        this.buttonColor = color;
+    }
+
+    public void setButtonText(String buttonText) {
+        this.buttonText = buttonText;
+    }
+
+    public void setRetryMessage(String retryMessage) {
+        this.retryMessage = retryMessage;
     }
 
 
-    void build(Context context) {
+    void initialize() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.dialog_internet_layout);
 
-        this.findViewById(R.id.retry_button).setOnClickListener(new View.OnClickListener() {
+        retryButton = (Button) findViewById(R.id.retry_button);
+        bodyMessageTextview = (TextView) findViewById(R.id.body_message);
+
+        retryButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -48,7 +77,22 @@ public class RetryDialog extends Dialog {
         this.onDialogCallback = onDialogCallback;
     }
 
-    interface OnDialogCallback {
+   public interface OnDialogCallback {
         void onRetryClick();
     }
+
+    private void buildDesign() {
+
+        GradientDrawable buttonBG = new GradientDrawable();
+        buttonBG.setShape(GradientDrawable.RECTANGLE);
+        buttonBG.setColor(ContextCompat.getColor(context, buttonColor));
+
+        retryButton.setBackground(buttonBG);
+        retryButton.setText(buttonText);
+        bodyMessageTextview.setText(retryMessage);
+
+
+    }
+
+
 }
