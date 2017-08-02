@@ -6,7 +6,7 @@ import org.json.JSONObject;
  * Created by moodi on 28/07/2017.
  */
 
-interface VolleyPlusResponseJSON {
+ public interface VolleyPlusResponseJSON {
     void onResponse(JSONObject response);
 
     void onConnectionError();
