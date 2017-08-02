@@ -27,7 +27,7 @@ public class NetworkObserver {
     public NetworkObserver() {
     }
 
-    interface INetworkObserver {
+    public interface INetworkObserver {
 
         void isAvalibale(boolean status);
 
