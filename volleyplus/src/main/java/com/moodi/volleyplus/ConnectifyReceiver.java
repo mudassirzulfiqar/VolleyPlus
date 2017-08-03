@@ -22,7 +22,7 @@ public class ConnectifyReceiver extends BroadcastReceiver {
                 && activeNetwork.isConnectedOrConnecting();
 
         if (NetworkObserver.getInstance().getNetworkObserver() != null) {
-            NetworkObserver.getInstance().getNetworkObserver().isAvalibale(isConnected);
+            NetworkObserver.getInstance().getNetworkObserver().isAvailable(isConnected);
         }
 
     }
