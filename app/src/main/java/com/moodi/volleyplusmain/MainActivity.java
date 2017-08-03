@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.moodi.volleyplus.NetworkObserver;
 import com.moodi.volleyplus.RetryDialog;
 import com.moodi.volleyplus.RetryDialogBuilder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NetworkObserver.INetworkObserver {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,20 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .buildDialog()
                 .show();
+
+    }
+
+    @Override
+    public void isAvailable(boolean status) {
+        Toast.makeText(this, "" + status, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        NetworkObserver.getInstance().setNetworkObserver(this);
 
     }
 }
